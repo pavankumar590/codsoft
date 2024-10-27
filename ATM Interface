@@ -1,0 +1,67 @@
+
+  import java.util.Scanner;
+
+public class ATMInterface {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double balance = 1000.00; // Initial balance
+        int choice;
+
+        while (true) {
+            System.out.println("\n==== Welcome to the ATM ====");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option (1-4): ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    // Check balance
+                    System.out.println("Your current balance is: $" + balance);
+                    break;
+
+                case 2:
+                    // Deposit money
+                    System.out.print("Enter the amount to deposit: $");
+                    double depositAmount = scanner.nextDouble();
+                    if (depositAmount > 0) {
+                        balance += depositAmount;
+                        System.out.println("Successfully deposited $" + depositAmount);
+                        System.out.println("New balance is: $" + balance);
+                    } else {
+                        System.out.println("Invalid amount. Deposit amount must be positive.");
+                    }
+                    break;
+
+                case 3:
+                    // Withdraw money
+                    System.out.print("Enter the amount to withdraw: $");
+                    double withdrawAmount = scanner.nextDouble();
+                    if (withdrawAmount > 0 && withdrawAmount <= balance) {
+                        balance -= withdrawAmount;
+                        System.out.println("Successfully withdrew $" + withdrawAmount);
+                        System.out.println("New balance is: $" + balance);
+                    } else if (withdrawAmount > balance) {
+                        System.out.println("Insufficient balance. You cannot withdraw more than $" + balance);
+                    } else {
+                        System.out.println("Invalid amount. Withdrawal amount must be positive.");
+                    }
+                    break;
+
+                case 4:
+                    // Exit
+                    System.out.println("Thank you for using the ATM. Goodbye!");
+                    System.exit(0);
+
+                default:
+                    // Invalid option
+                    System.out.println("Invalid choice. Please choose a valid option.");
+                    break;
+            }
+        }
+    }
+}
+
+
